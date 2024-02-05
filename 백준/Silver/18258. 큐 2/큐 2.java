@@ -16,7 +16,7 @@ public class Main{
 		String[] command;
 		int front=0, rear=0;
 		int n = Integer.parseInt(br.readLine());
-		Integer q[] = new Integer[2000000];
+		Integer q[] = new Integer[n+1];
 		for(int i=0; i<n; i++) {
 			
 			command = br.readLine().split(" ");
