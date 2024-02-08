@@ -3,64 +3,81 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.net.MulticastSocket;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class Main{
-
-	public static void main(String[] args) throws NumberFormatException, IOException {
+public class Main {
 	
+	static int front=0, back=0;
+	static int arr[];
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String[] command;
-		int front=0, rear=0;
-		int n = Integer.parseInt(br.readLine());
-		Integer q[] = new Integer[n+1];
-		for(int i=0; i<n; i++) {
-			
-			command = br.readLine().split(" ");
-			switch (command[0]) {
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int n = Integer.parseInt(st.nextToken());
+		arr= new int[n];
+		for(int i=0; i<n;i++) {
+			st = new StringTokenizer(br.readLine());
+			switch (st.nextToken()) {
+			case "pop":
+				bw.append(pop()+"\n");
+				break;
 			case "push":
-				
-				q[rear] = Integer.parseInt(command[1]);
-				rear++;
-				break;
-			case "front":
-				if(front == rear) {
-					bw.append("-1\n");
-				}else {
-					bw.append(q[front]+"\n");
-				}
-				break;
-			case "back":
-				if(front == rear) {
-					bw.append("-1\n");
-				}else {
-					bw.append(q[rear-1]+"\n");
-				}
+				push(Integer.parseInt(st.nextToken()));
 				break;
 			case "size":
-				bw.append((rear - front)+"\n");
+				bw.append(size()+"\n");
+				
 				break;
 			case "empty":
-				if(rear == front) bw.append(1+"\n");
-				else bw.append(0+"\n");
+				bw.append(empty()+"\n");
+				
 				break;
-			case "pop":
-				if(rear>front) {
-					bw.append(q[front]+"\n");
-					front++;
-				}
-				else bw.append(-1+"\n");
+			case "front":
+				bw.append(front()+"\n");
+				
 				break;
+			case "back":
+				
+				bw.append(back()+"\n");
+				break;
+
 			default:
 				break;
 			}
 		}
+		
 		bw.flush();
 		bw.close();
 		br.close();
+
+	}
+	static void push(int num) {
+		arr[back] = num;
+		back++;
+	}
+	static int pop() {
+		if(front == back) return -1;
+		return arr[front++];
+	}
+	static int size() {
+		return back-front;
+	}
+	static int empty() {
+		if(back== front) return 1;
+		return 0;
+	}
+	static int front() {
+		if(back!= front) return arr[front];
+		return -1;
+	}
+	static int back() {
+		if(back!= front) return arr[back-1];
+		return -1;
 	}
 
 }
