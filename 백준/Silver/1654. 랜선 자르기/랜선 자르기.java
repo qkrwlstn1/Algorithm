@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -37,8 +36,8 @@ public class Main {
 
 
         }
-        if(low == 2147483647 || low ==1) bw.append(low+"");
-        else bw.append(--low+"");
+        
+        bw.append(--low+"");
 
 
 
