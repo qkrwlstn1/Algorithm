@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 
 public class Main {
 
@@ -18,6 +17,7 @@ public class Main {
         char[] arr = br.readLine().toCharArray();
         for (int i = 0; i < n; i++) {
             answer += tmp * map.get(arr[i]);
+            answer %= 1234567891;
             tmp = tmp * 31 % 1234567891;
         }
 
