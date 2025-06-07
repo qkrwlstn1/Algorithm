@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.StringTokenizer;
+
+//TIP 코드를 <b>실행</b>하려면 <shortcut actionId="Run"/>을(를) 누르거나
+// 에디터 여백에 있는 <icon src="AllIcons.Actions.Execute"/> 아이콘을 클릭하세요.
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        // 0 1 2  3  4  5
+        // 1 5 10 20 50 100
+//        int n = Integer.parseInt(br.readLine());
+
+       // StringTokenizer st = new StringTokenizer(br.readLine());
+
+        char[] str1;
+        char[] str2 = br.readLine().toCharArray();
+
+
+        boolean tmp = true;
+        while (true){
+            str1 = str2;
+            str2 = br.readLine().toCharArray();
+
+            if(str2[0] == '#'){
+                bw.append(tmp ? "Correct" : "Incorrect").append("\n");
+                tmp = true;
+                str2 = br.readLine().toCharArray();
+                if(str2[0] == '#'){
+                    break;
+                }
+            }else {
+                if(str2.length != str1.length){
+                    tmp =false;
+                }else{
+                    int cnt = 0;
+                    for (int i = 0; i < str2.length; i++) {
+                        if (str1[i] != str2[i]) cnt++;
+                    }
+                    if(cnt != 1) tmp = false;
+                }
+            }
+
+
+        }
+
+
+
+        bw.flush();
+        bw.close();
+    }
+
+}
